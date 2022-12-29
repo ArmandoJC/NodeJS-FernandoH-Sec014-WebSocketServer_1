@@ -50,6 +50,10 @@ class Server {
           console.log('Cliente desconectado', socket.id);
         })
 
+        socket.on('enviar-mensaje', (payload) => {
+          console.log(payload);
+        });
+
 
       });
 

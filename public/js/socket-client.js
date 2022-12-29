@@ -1,7 +1,9 @@
 // Referencias del html
 
-const lblOnline = document.querySelector('#lblOnline');
+const lblOnline  = document.querySelector('#lblOnline');
 const lblOffline = document.querySelector('#lblOffline');
+const txtMensaje = document.querySelector('#txtMensaje');
+const btnEnviar  = document.querySelector('#btnEnviar');
 
 
 const socket = io(); // Esto expone la librería ./socket.io/socket.io.js    
@@ -21,4 +23,21 @@ socket.on('disconnect', () => {
   lblOnline.style.display  = 'none';
   lblOffline.style.display = '';
   
+});
+
+btnEnviar.addEventListener('click', () => {
+
+  const mensaje = txtMensaje.value;
+  const payload = {
+    mensaje,
+    id: '123abc',
+    fecha: new Date().getTime(),
+  }
+  
+  socket.emit('enviar-mensaje', payload);
+
+
+
+
+
 });
